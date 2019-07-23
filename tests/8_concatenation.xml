@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE program [
+        <!ELEMENT program (taci+)>
+        <!ELEMENT taci (dst?,src1?,src2?)>
+        <!ELEMENT dst (#PCDATA)>
+        <!ELEMENT src1 (#PCDATA)>
+        <!ELEMENT src2 (#PCDATA)>
+        <!ATTLIST program name CDATA #IMPLIED>
+        <!ATTLIST taci opcode CDATA #REQUIRED>
+        <!ATTLIST dst kind (literal|variable) "variable">
+        <!ATTLIST dst type (integer|string) "integer">
+        <!ATTLIST src1 kind (literal|variable) "variable">
+        <!ATTLIST src1 type (integer|string) "integer">
+        <!ATTLIST src2 kind (literal|variable) "variable">
+        <!ATTLIST src2 type (integer|string) "integer">
+        <!ENTITY language "IPPe Three-Address Code">
+        <!ENTITY eol "&#xA;">
+        <!ENTITY gt ">">
+        <!ENTITY lt "<">
+        ]>
+<program name="Concatenation test">
+    <taci opcode="PRINT">
+        <src1 kind="literal" type="string">String 1: </src1>
+    </taci>
+    <taci opcode="READSTR">
+        <dst>str1</dst>
+    </taci>
+    <taci opcode="PRINT">
+        <src1 kind="literal" type="string">String 2: </src1>
+    </taci>
+    <taci opcode="READSTR">
+        <dst>str2</dst>
+    </taci>
+    <taci opcode="PRINT">
+        <src1 kind="literal" type="string">Integer: </src1>
+    </taci>
+    <taci opcode="READINT">
+        <dst>number</dst>
+    </taci>
+    <taci opcode="INTSTR">
+        <dst>number</dst>
+        <src1>number</src1>
+    </taci>
+    <taci opcode="PRINT">
+        <src1 kind="literal" type="string">Integer to String: </src1>
+    </taci>
+    <taci opcode="PRINTLN">
+        <src1>number</src1>
+    </taci>
+    <taci opcode="CONCAT">
+        <dst>str1</dst>
+        <src1>str1</src1>
+        <src2>str2</src2>
+    </taci>
+    <taci opcode="CONCAT">
+        <dst>str1</dst>
+        <src1>str1</src1>
+        <src2>number</src2>
+    </taci>
+    <taci opcode="PRINT">
+        <src1 kind="literal" type="string">Result: </src1>
+    </taci>
+    <taci opcode="PRINTLN">
+        <src1>str1</src1>
+    </taci>
+</program>

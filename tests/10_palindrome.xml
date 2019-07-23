@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE program [
+        <!ELEMENT program (taci+)>
+        <!ELEMENT taci (dst?,src1?,src2?)>
+        <!ELEMENT dst (#PCDATA)>
+        <!ELEMENT src1 (#PCDATA)>
+        <!ELEMENT src2 (#PCDATA)>
+        <!ATTLIST program name CDATA #IMPLIED>
+        <!ATTLIST taci opcode CDATA #REQUIRED>
+        <!ATTLIST dst kind (literal|variable) "variable">
+        <!ATTLIST dst type (integer|string) "integer">
+        <!ATTLIST src1 kind (literal|variable) "variable">
+        <!ATTLIST src1 type (integer|string) "integer">
+        <!ATTLIST src2 kind (literal|variable) "variable">
+        <!ATTLIST src2 type (integer|string) "integer">
+        <!ENTITY language "IPPe Three-Address Code">
+        <!ENTITY eol "&#xA;">
+        <!ENTITY gt ">">
+        <!ENTITY lt "<">
+        ]>
+<program name="Palindrome">
+    <taci opcode="PRINT">
+        <src1 kind="literal" type="string">Give a string: </src1>
+    </taci>
+    <taci opcode="READSTR">
+        <dst>str</dst>
+    </taci>
+    <taci opcode="LEN">
+        <dst>backCounter</dst>
+        <src1>str</src1>
+    </taci>
+    <taci opcode="MOV">
+        <dst>counter</dst>
+        <src1 kind="literal">-1</src1>
+    </taci>
+    <taci opcode="DIV">
+        <dst>middle</dst>
+        <src1>backCounter</src1>
+        <src2 kind="literal">2</src2>
+    </taci>
+    <taci opcode="LABEL">
+        <dst kind="literal" type="string">CHECK</dst>
+    </taci>
+    <taci opcode="ADD">
+        <dst>counter</dst>
+        <src1>counter</src1>
+        <src2 kind="literal">1</src2>
+    </taci>
+    <taci opcode="SUB">
+        <dst>backCounter</dst>
+        <src1>backCounter</src1>
+        <src2 kind="literal">1</src2>
+    </taci>
+    <taci opcode="GETAT">
+        <dst>valueA</dst>
+        <src1>str</src1>
+        <src2>counter</src2>
+    </taci>
+    <taci opcode="GETAT">
+        <dst>valueB</dst>
+        <src1>str</src1>
+        <src2>backCounter</src2>
+    </taci>
+    <taci opcode="JUMPIFEQ">
+        <dst kind="literal" type="string">LASTCHECK</dst>
+        <src1>middle</src1>
+        <src2>counter</src2>
+    </taci>
+    <taci opcode="JUMPIFEQ">
+        <dst kind="literal" type="string">CHECK</dst>
+        <src1>valueA</src1>
+        <src2>valueB</src2>
+    </taci>
+    <taci opcode="LABEL">
+        <dst kind="literal" type="string">LASTCHECK</dst>
+    </taci>
+    <taci opcode="JUMPIFEQ">
+        <dst kind="literal" type="string">ISPALINDROME</dst>
+        <src1>valueA</src1>
+        <src2>valueB</src2>
+    </taci>
+    <taci opcode="PRINTLN">
+        <src1 type="string" kind="literal">It is not a palindrome</src1>
+    </taci>
+    <taci opcode="JUMP">
+        <dst kind="literal" type="string">END</dst>
+    </taci>
+    <taci opcode="LABEL">
+        <dst kind="literal" type="string">ISPALINDROME</dst>
+    </taci>
+    <taci opcode="PRINTLN">
+        <src1 type="string" kind="literal">It is a palindrome</src1>
+    </taci>
+    <taci opcode="LABEL">
+        <dst kind="literal" type="string">END</dst>
+    </taci>
+
+
+</program>

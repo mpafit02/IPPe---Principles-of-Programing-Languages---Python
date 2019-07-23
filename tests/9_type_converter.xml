@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE program [
+        <!ELEMENT program (taci+)>
+        <!ELEMENT taci (dst?,src1?,src2?)>
+        <!ELEMENT dst (#PCDATA)>
+        <!ELEMENT src1 (#PCDATA)>
+        <!ELEMENT src2 (#PCDATA)>
+        <!ATTLIST program name CDATA #IMPLIED>
+        <!ATTLIST taci opcode CDATA #REQUIRED>
+        <!ATTLIST dst kind (literal|variable) "variable">
+        <!ATTLIST dst type (integer|string) "integer">
+        <!ATTLIST src1 kind (literal|variable) "variable">
+        <!ATTLIST src1 type (integer|string) "integer">
+        <!ATTLIST src2 kind (literal|variable) "variable">
+        <!ATTLIST src2 type (integer|string) "integer">
+        <!ENTITY language "IPPe Three-Address Code">
+        <!ENTITY eol "&#xA;">
+        <!ENTITY gt ">">
+        <!ENTITY lt "<">
+        ]>
+<program name="Type converter from string to integer and reverse">
+    <taci opcode="PRINT">
+        <src1 kind="literal" type="string">Give a string: </src1>
+    </taci>
+    <taci opcode="READSTR">
+        <dst>string</dst>
+    </taci>
+    <taci opcode="PRINT">
+        <src1 kind="literal" type="string">Give a number: </src1>
+    </taci>
+    <taci opcode="READINT">
+        <dst>number</dst>
+    </taci>
+    <taci opcode="PRINT">
+        <src1 kind="literal" type="string">Select 0 for str to int or 1 for int to str: </src1>
+    </taci>
+    <taci opcode="READINT">
+        <dst>selection</dst>
+    </taci>
+    <taci opcode="JUMPIFEQ">
+        <dst type="string" kind="literal">PARSE-STR-TO-INT</dst>
+        <src1>selection</src1>
+        <src2 kind="literal">0</src2>
+    </taci>
+    <taci opcode="INTSTR">
+        <dst>number</dst>
+        <src1>number</src1>
+    </taci>
+    <taci opcode="CONCAT">
+        <dst>string</dst>
+        <src1>string</src1>
+        <src2>number</src2>
+    </taci>
+    <taci opcode="PRINT">
+        <src1 kind="literal" type="string">Result as String Concatenation: </src1>
+    </taci>
+    <taci opcode="PRINTLN">
+        <src1>string</src1>
+    </taci>
+    <taci opcode="JUMP">
+        <dst kind="literal" type="string">END</dst>
+    </taci>
+    <taci opcode="LABEL">
+        <dst kind="literal" type="string">PARSE-STR-TO-INT</dst>
+    </taci>
+    <taci opcode="STRINT">
+        <dst>string</dst>
+        <src1>string</src1>
+    </taci>
+    <taci opcode="ADD">
+        <dst>string</dst>
+        <src1>string</src1>
+        <src2>number</src2>
+    </taci>
+    <taci opcode="PRINT">
+        <src1 kind="literal" type="string">Result as Integer Adition: </src1>
+    </taci>
+    <taci opcode="PRINTLN">
+        <src1>string</src1>
+    </taci>
+
+    <taci opcode="LABEL">
+        <dst kind="literal" type="string">END</dst>
+    </taci>
+
+</program>

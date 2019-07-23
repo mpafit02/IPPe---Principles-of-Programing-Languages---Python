@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE program [
+<!ELEMENT program (taci+)>
+<!ELEMENT taci (dst?,src1?,src2?)>
+<!ELEMENT dst (CDATA)>
+<!ELEMENT src1 (CDATA)>
+<!ELEMENT src2 (CDATA)>
+<!ATTLIST program name CDATA #IMPLIED>
+<!ATTLIST taci opcode CDATA #REQUIRED>
+<!ATTLIST dst kind (literal|variable) "variable">
+<!ATTLIST dst type (integer|string) "integer">
+<!ATTLIST src1 kind (literal|variable) "variable">
+<!ATTLIST src1 type (integer|string) "integer">
+<!ATTLIST src2 kind (literal|variable) "variable">
+<!ATTLIST src2 type (integer|string) "integer">
+<!ENTITY language "Three-Address Code Interpreter">
+]>
+<program name="Testing strings">
+  <taci opcode="PRINT">
+    <src1 kind="literal" type="string">Give the name: </src1>
+  </taci>   
+  <taci opcode="READSTR">
+    <dst>name</dst>
+  </taci>
+  <taci opcode="PRINT">
+    <src1 kind="literal" type="string">Give the age: </src1>
+  </taci>   
+  <taci opcode="READINT">
+    <dst>age</dst>
+  </taci>
+  <taci opcode="LEN">
+    <dst>len</dst>
+    <src1>name</src1>
+  </taci>
+  <taci opcode="PRINT">
+    <src1 kind="literal" type="string">The length of name is: </src1>
+  </taci>   
+  <taci opcode="PRINTLN">
+    <src1>len</src1>
+  </taci>
+  <taci opcode="INTSTR">
+    <dst>age</dst>
+    <src1>age</src1>
+  </taci>
+  <taci opcode="CONCAT">
+    <dst>phrase</dst>
+    <src1>name</src1>
+    <src2 kind="literal"> is </src2>
+  </taci>
+  <taci opcode="CONCAT">
+    <dst>phrase</dst>
+    <src1>phrase</src1>
+    <src2>age</src2>
+  </taci>
+  <taci opcode="CONCAT">
+    <dst>phrase</dst>
+    <src1>phrase</src1>
+    <src2 kind="literal"> years old.</src2>
+  </taci>
+  <taci opcode="PRINT">
+    <src1 kind="literal" type="string">Result: </src1>
+  </taci>   
+  <taci opcode="PRINTLN">
+    <src1>phrase</src1>
+  </taci>
+  <taci opcode="GETAT">
+    <dst>letter</dst>
+    <src1>phrase</src1>
+    <src2 kind="literal">0</src2>
+  </taci>
+  <taci opcode="PRINT">
+    <src1 kind="literal" type="string">The first letter of the phrase is: </src1>
+  </taci>   
+  <taci opcode="PRINTLN">
+    <src1>letter</src1>
+  </taci>
+  <taci opcode="LEN">
+    <dst>len</dst>
+    <src1>phrase</src1>
+  </taci>
+  <taci opcode="SUB">
+    <dst>len</dst>
+    <src1>len</src1>
+    <src2 kind="literal">1</src2>
+  </taci>
+  <taci opcode="GETAT">
+    <dst>letter</dst>
+    <src1>phrase</src1>
+    <src2 >len</src2>
+  </taci>
+  <taci opcode="PRINT">
+    <src1 kind="literal" type="string">The last letter of the phrase is: </src1>
+  </taci>   
+  <taci opcode="PRINTLN">
+    <src1>letter</src1>
+  </taci>
+</program> 

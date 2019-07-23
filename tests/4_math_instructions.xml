@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE program [
+        <!ELEMENT program (taci+)>
+        <!ELEMENT taci (dst?,src1?,src2?)>
+        <!ELEMENT dst (#PCDATA)>
+        <!ELEMENT src1 (#PCDATA)>
+        <!ELEMENT src2 (#PCDATA)>
+        <!ATTLIST program name CDATA #IMPLIED>
+        <!ATTLIST taci opcode CDATA #REQUIRED>
+        <!ATTLIST dst kind (literal|variable) "variable">
+        <!ATTLIST dst type (integer|string) "integer">
+        <!ATTLIST src1 kind (literal|variable) "variable">
+        <!ATTLIST src1 type (integer|string) "integer">
+        <!ATTLIST src2 kind (literal|variable) "variable">
+        <!ATTLIST src2 type (integer|string) "integer">
+        <!ENTITY language "IPPe Three-Address Code">
+        <!ENTITY eol "&#xA;">
+        <!ENTITY gt ">">
+        <!ENTITY lt "<">
+        ]>
+<program name="Math Instructions Test">
+    <taci opcode="MOV">
+        <dst>a</dst>
+        <src1 kind="literal">0</src1>
+    </taci>
+    <taci opcode="MOV">
+        <dst>b</dst>
+        <src1 kind="literal">10</src1>
+    </taci>
+    <taci opcode="ADD">
+        <dst>c</dst>
+        <src1 kind="literal">0</src1>
+        <src2 kind="literal">0</src2>
+    </taci>
+    <taci opcode="PRINT">
+        <src1 kind="literal">A = </src1>
+    </taci>
+    <taci opcode="PRINTLN">
+        <src1>a</src1>
+    </taci>
+    <taci opcode="PRINT">
+        <src1 kind="literal">B = </src1>
+    </taci>
+    <taci opcode="PRINTLN">
+        <src1>b</src1>
+    </taci>
+    <taci opcode="PRINT">
+        <src1 kind="literal">C = </src1>
+    </taci>
+    <taci opcode="PRINTLN">
+        <src1>c</src1>
+    </taci>
+    <taci opcode="ADD">
+        <dst>a</dst>
+        <src1>a</src1>
+        <src2 kind="literal">5</src2>
+    </taci>
+    <taci opcode="SUB">
+        <dst>c</dst>
+        <src1>a</src1>
+        <src2>b</src2>
+    </taci>
+    <taci opcode="PRINT">
+        <src1 kind="literal">C = </src1>
+    </taci>
+    <taci opcode="PRINTLN">
+        <src1>c</src1>
+    </taci>
+    <taci opcode="MUL">
+        <dst>a</dst>
+        <src1>a</src1>
+        <src2 kind="literal">5</src2>
+    </taci>
+    <taci opcode="PRINT">
+        <src1 kind="literal">A = </src1>
+    </taci>
+    <taci opcode="PRINTLN">
+        <src1>a</src1>
+    </taci>
+    <taci opcode="ADD">
+        <dst>b</dst>
+        <src1>b</src1>
+        <src2 kind="literal">-8</src2>
+    </taci>
+    <taci opcode="PRINT">
+        <src1 kind="literal">B = </src1>
+    </taci>
+    <taci opcode="PRINTLN">
+        <src1>b</src1>
+    </taci>
+    <taci opcode="DIV">
+        <dst>a</dst>
+        <src1>a</src1>
+        <src2 kind="literal">5</src2>
+    </taci>
+    <taci opcode="PRINT">
+        <src1 kind="literal">A = </src1>
+    </taci>
+    <taci opcode="PRINTLN">
+        <src1>a</src1>
+    </taci>
+    <taci opcode="MUL">
+        <dst>a</dst>
+        <src1>a</src1>
+        <src2 kind="literal">-4</src2>
+    </taci>
+    <taci opcode="PRINT">
+        <src1 kind="literal">A = </src1>
+    </taci>
+    <taci opcode="PRINTLN">
+        <src1>a</src1>
+    </taci>
+</program>

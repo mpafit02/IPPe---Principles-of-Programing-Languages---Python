@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE program [
+        <!ELEMENT program (taci+)>
+        <!ELEMENT taci (dst?,src1?,src2?)>
+        <!ELEMENT dst (#PCDATA)>
+        <!ELEMENT src1 (#PCDATA)>
+        <!ELEMENT src2 (#PCDATA)>
+        <!ATTLIST program name CDATA #IMPLIED>
+        <!ATTLIST taci opcode CDATA #REQUIRED>
+        <!ATTLIST dst kind (literal|variable) "variable">
+        <!ATTLIST dst type (integer|string) "integer">
+        <!ATTLIST src1 kind (literal|variable) "variable">
+        <!ATTLIST src1 type (integer|string) "integer">
+        <!ATTLIST src2 kind (literal|variable) "variable">
+        <!ATTLIST src2 type (integer|string) "integer">
+        <!ENTITY language "IPPe Three-Address Code">
+        <!ENTITY eol "&#xA;">
+        <!ENTITY gt ">">
+        <!ENTITY lt "<">
+        ]>
+<program name="Gauss Sum Recursive">
+    <taci opcode="JUMP">
+        <dst type="string" kind="literal">MAIN</dst>
+    </taci>
+
+    <!-- recursion -->
+    <taci opcode="LABEL">
+        <dst kind="literal" type="string">SUM-RECURSION</dst>
+    </taci>
+    <taci opcode="JUMPIFEQ">
+        <dst kind="literal" type="string">END-RECURSION</dst>
+        <src1>i</src1>
+        <src2 kind="literal">1</src2>
+    </taci>
+    <taci opcode="JUMPIFEQ">
+        <dst kind="literal" type="string">END-RECURSION</dst>
+        <src1>i</src1>
+        <src2 kind="literal">0</src2>
+    </taci>
+    <taci opcode="SUB">
+        <dst>i</dst>
+        <src1>i</src1>
+        <src2 kind="literal">1</src2>
+    </taci>
+    <taci opcode="PUSH"><src1>i</src1></taci>
+    <taci opcode="CALL">
+        <dst type="string" kind="literal">SUM-RECURSION</dst>
+    </taci>
+    <taci opcode="POP"><dst>i</dst></taci>
+    <taci opcode="POP"><dst>j</dst></taci>
+    <taci opcode="ADD">
+        <dst>i</dst>
+        <src1>i</src1>
+        <src2>j</src2>
+    </taci>
+    <taci opcode="PUSH"><src1>i</src1></taci>
+    <taci opcode="LABEL">
+        <dst kind="literal" type="string">END-RECURSION</dst>
+    </taci>
+    <taci opcode="RETURN"/>
+
+    <!--main-->
+    <taci opcode="LABEL">
+        <dst kind="literal" type="string">MAIN</dst>
+    </taci>
+    <taci opcode="PRINT">
+        <src1 kind="literal" type="string">Give an integer: </src1>
+    </taci>
+    <taci opcode="READINT">
+        <dst>i</dst>
+    </taci>
+    <taci opcode="PUSH"><src1>i</src1></taci>
+    <taci opcode="CALL">
+        <dst kind="literal" type="string">SUM-RECURSION</dst>
+    </taci>
+    <taci opcode="PRINT">
+        <src1 kind="literal" type="string">Result from Recursive Gauss Addition: </src1>
+    </taci>
+    <taci opcode="PRINTLN">
+        <src1>i</src1>
+    </taci>
+</program>
